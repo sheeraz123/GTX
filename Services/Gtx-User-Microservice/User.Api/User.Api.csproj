@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>6e490ca0-3d7b-4c5e-8f89-33546f6c709f</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\Common.Logging\Common.Logging.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Common.Miscellaneous\Common.Miscellaneous.csproj" />
+    <ProjectReference Include="..\user.application\User.Application.csproj" />
+    <ProjectReference Include="..\user.infrastructure\User.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

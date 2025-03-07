@@ -1,0 +1,20 @@
+@User.Api_HostAddress = https://localhost:7244
+
+GET {{user.api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+POST {{User.Api_HostAddress}}/api/v1/token
+Content-Type: application/json
+
+{
+ "Username":"test",
+ "Password":"test"
+}
+
+###
+
+GET {{User.Api_HostAddress}}/APIStatus
+
+###
