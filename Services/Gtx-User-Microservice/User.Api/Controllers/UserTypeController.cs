@@ -8,7 +8,7 @@ using User.Application.Features.UserType.Query;
 
 namespace User.Api.Controllers
 {
-    [Route("api/")]
+    [Route("api/user")]
     [ApiController]
     public class UserTypeController : ControllerBase
     {

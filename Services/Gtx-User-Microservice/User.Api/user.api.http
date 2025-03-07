@@ -15,30 +15,14 @@ Content-Type: application/json
 
 ###
 
-GET {{User.Api_HostAddress}}/APIStatus
+GET {{User.Api_HostAddress}}/api/user/UserTypes
 
 ###
 
-GET {{User.Api_HostAddress}}/APIStatus
+GET {{User.Api_HostAddress}}/api/user/UserTypes
 
 ###
 
-GET {{User.Api_HostAddress}}/api/UserTypes
-
-###
-
-GET {{User.Api_HostAddress}}/api/UserTypes
-
-###
-
-GET {{User.Api_HostAddress}}/api/UserTypes
-
-###
-
-GET {{User.Api_HostAddress}}/api/UserTypes
-
-###
-
-GET {{User.Api_HostAddress}}/api/UserTypes
+GET {{User.Api_HostAddress}}/api/user/UserTypes
 
 ###

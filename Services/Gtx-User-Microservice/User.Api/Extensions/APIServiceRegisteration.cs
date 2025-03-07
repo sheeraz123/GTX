@@ -14,6 +14,7 @@ namespace User.Api.Extensions
 
         public static IServiceCollection AddApiServiceRegistration(this IServiceCollection services, IWebHostEnvironment env, IConfigurationBuilder configurationManager, IConfiguration configuration, IHostBuilder host)
         {
+          
             var appdata = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             string envVariable = appdata.GetSection("EnvVariable").Value ?? "";
             configurationManager.AddJsonFile($"appsettings.{envVariable}.json", optional: false, reloadOnChange: true);
