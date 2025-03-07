@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using User.Domain.Entities;
 
 namespace User.Infrastructure
 {
@@ -8,6 +9,6 @@ namespace User.Infrastructure
         {
         }
         
-
+        public DbSet<UserTypes> userTypesEntity { get; set; }
     }
 }

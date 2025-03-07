@@ -1,6 +1,8 @@
 ﻿
 
 using AutoMapper;
+using User.Application.Features.UserType.Query;
+using User.Domain.Entities;
 
 namespace User.Application.Mappings
 {
@@ -8,8 +10,8 @@ namespace User.Application.Mappings
     {
         public MappingProfile()
         {
-            
 
+            CreateMap<UserTypes, GetUserTypeVm>().ReverseMap();
         }
     }
 }

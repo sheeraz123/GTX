@@ -1,4 +1,5 @@
-﻿using Common.Logging;
+﻿
+using Common.Logging;
 using Common.Miscellaneous;
 using Common.Miscellaneous.Models;
 using Serilog;
@@ -21,6 +22,7 @@ namespace User.Api.Extensions
             // Add services to the container.
             AuthConfig.AuthServiceConfiguration(services, env, configurationManager, configuration, host);
             services.AddApplicationServices();
+            
             services.AddInfrastructureServices(configuration);
             host.UseSerilog(SeriLogger.Configure);
             services.AddEndpointsApiExplorer();
