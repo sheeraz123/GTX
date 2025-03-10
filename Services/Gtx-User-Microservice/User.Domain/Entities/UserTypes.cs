@@ -21,5 +21,6 @@ namespace User.Domain.Entities
         public required bool Deleted { get; set; } = false;
         public string? CreatedBy { get; set; }
         public string? UpdatedBy { get; set; }
+        public ICollection<UserMaster> userMasters { get; set; }
     }
 }

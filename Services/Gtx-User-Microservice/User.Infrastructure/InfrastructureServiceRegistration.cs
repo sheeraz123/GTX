@@ -21,6 +21,7 @@ namespace user.infrastructure
                options.UseSqlServer(databaseConfig.ConnectionString), 1024);
             services.AddTransient(typeof(IAsyncRepository<SqlContext>), typeof(RepositoryBase<SqlContext>));
             services.AddScoped<IUserTypeRepository, UserTypeRepositories>();
+            services.AddScoped<IUserMasterRepository, UserMasterRepositories>();
             return services;
         }
     }

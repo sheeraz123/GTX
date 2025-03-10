@@ -26,3 +26,32 @@ GET {{User.Api_HostAddress}}/api/user/UserTypes
 GET {{User.Api_HostAddress}}/api/user/UserTypes
 
 ###
+
+POST {{User.Api_HostAddress}}/api/user/token
+Content-Type: application/json
+
+{
+    "username":99899269658,
+    "password":"dsda"
+}
+
+###
+
+@pageNumber=1
+@pagesize=10
+GET {{User.Api_HostAddress}}/api/user/getUsers?pageNumber={{pageNumber}}&pagesize={{pagesize}}
+
+###
+
+GET {{User.Api_HostAddress}}/api/user/getUsers?pageNumber={{pageNumber}}&pagesize={{pagesize}}
+
+###
+
+POST {{User.Api_HostAddress}}/api/user/AddUser
+Content-Type: application/json
+
+{
+  //AddUserMasterCommand
+}
+
+###

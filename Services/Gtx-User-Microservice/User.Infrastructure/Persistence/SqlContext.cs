@@ -10,5 +10,6 @@ namespace User.Infrastructure
         }
         
         public DbSet<UserTypes> userTypesEntity { get; set; }
+        public DbSet<UserMaster> userMasterEntity { get; set; }
     }
 }

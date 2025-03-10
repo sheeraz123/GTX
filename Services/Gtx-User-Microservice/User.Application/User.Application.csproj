@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\Common.Miscellaneous\Common.Miscellaneous.csproj" />
     <ProjectReference Include="..\user.domain\User.Domain.csproj" />
   </ItemGroup>
 

@@ -59,6 +59,18 @@ namespace user.infrastructure
 
         public async Task<T> AddAsync(T entity)
         {
+            var entityType = typeof(T);
+            var keyProperty = _dbContext.Model.FindEntityType(entityType).FindPrimaryKey().Properties.FirstOrDefault();
+
+            if (keyProperty != null && keyProperty.ValueGenerated == Microsoft.EntityFrameworkCore.Metadata.ValueGenerated.OnAdd)
+            {
+                var keyValue = keyProperty.PropertyInfo.GetValue(entity);
+                if (keyValue != null && (keyValue is int intValue && intValue == 0 || keyValue is decimal decimalValue && decimalValue == 0))
+                {
+                    keyProperty.PropertyInfo.SetValue(entity, null);
+                }
+            }
+
             _dbContext.Set<T>().Add(entity);
             await _dbContext.SaveChangesAsync();
             return entity;

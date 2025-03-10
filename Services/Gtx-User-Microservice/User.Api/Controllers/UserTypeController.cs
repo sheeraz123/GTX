@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using User.Application.Features.Jwt.Query;
+using User.Application.Features.UserMaster.Query;
 using User.Application.Features.UserType.Query;
 
 namespace User.Api.Controllers
