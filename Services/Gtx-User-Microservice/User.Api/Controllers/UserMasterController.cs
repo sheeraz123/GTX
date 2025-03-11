@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using User.Application.Features.UserMaster.Command.AddUserMaster;
+using User.Application.Features.UserMaster.Command.UpdateUserMaster;
 using User.Application.Features.UserMaster.GetUsersList;
 using User.Application.Features.UserMaster.Query;
 
@@ -45,9 +46,9 @@ namespace User.Api.Controllers
         [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status502BadGateway)]
-        public async Task<GetUserVm> GetUsers(int pageNumber, int pagesize)
+        public async Task<GetUserVm> GetUsers(int pageNumber, int pagesize,int id=0)
         {
-            var request = new GetUserQuery { PageNumber = pageNumber, PageSize = pagesize };
+            var request = new GetUserQuery { PageNumber = pageNumber, PageSize = pagesize,UserId= id };
             var response = await _mediator.Send(request);
             return response;
         }
@@ -61,6 +62,20 @@ namespace User.Api.Controllers
         [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status502BadGateway)]
         public async Task<AddUserMasterVm> AddUser([FromBody]  AddUserMasterCommand request)
+        {
+            var response = await _mediator.Send(request);
+            return response;
+        }
+
+        [Consumes("application/json")]
+        [Produces("application/json")]
+        [HttpPut("UpdateUser")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status502BadGateway)]
+        public async Task<UpdateUserMasterVm> UpdateUser([FromBody] UpdateUserMasterCommand request)
         {
             var response = await _mediator.Send(request);
             return response;

@@ -16,7 +16,7 @@ namespace User.Application.Contracts.Persistence
                                        bool disableTracking = true);
         Task<T> GetByIdAsync(int id);
         Task<T> AddAsync(T entity);
-        Task UpdateAsync(T entity);
+        Task<T> UpdateAsync(T entity);
         Task DeleteAsync(T entity);
 
         //Task<T> IsExits(Expression<Func<T, bool>>? predicate);

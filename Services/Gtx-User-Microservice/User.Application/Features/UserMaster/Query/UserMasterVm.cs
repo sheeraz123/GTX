@@ -13,6 +13,7 @@ namespace User.Application.Features.UserMaster.Query
         public int? ExpiresIn { get; set; }
         public string? AccessToken { get; set; }
         public string? UserType { get; set; }
+        public decimal? UserId { get; set; }
         public string? Name { get; set; }
     }
 

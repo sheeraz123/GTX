@@ -55,3 +55,12 @@ Content-Type: application/json
 }
 
 ###
+
+POST {{User.Api_HostAddress}}/api/user/UpdateUser
+Content-Type: application/json
+
+{
+  //AddUserMasterCommand
+}
+
+###

@@ -25,31 +25,65 @@ namespace User.Infrastructure.Repositories
             _token = tokenOption.Value;
         }
 
-        public async Task<IReadOnlyList<GetUserDetailsVm>> GetUsersAsync(GetUserQuery request)
+        public async Task<(int totalRecords, IReadOnlyList<GetUserDetailsVm> userDetails)> GetUsersAsync(GetUserQuery request)
         {
-            var result = await _dbContext.userMasterEntity
-               .Include(u => u.userTypes)
-               .Skip((request.PageNumber - 1) * request.PageSize)
-               .Take(request.PageSize)
-               .Select(u => new GetUserDetailsVm
-               {
-                   Id = u.Id,
-                   UserTypeId = u.UserTypeId,
-                   UserType = u.userTypes.UserType,
-                   FirstName = u.FirstName,
-                   LastName = u.LastName,
-                   Password = u.Password,
-                   Email = u.Email,
-                   Mobile = u.Mobile,
-                   UpdationDate = u.UpdationDate,
-                   Enabled = u.Enabled,
-                   Deleted = u.Deleted,
-                   CreatedBy = u.CreatedBy,
-                   UpdatedBy = u.UpdatedBy
-               })
-               .ToListAsync();
+            if (request.UserId > 0)
+            {
+                var result = await _dbContext.userMasterEntity.Where(u => u.Id == request.UserId)
+                   .Include(u => u.userTypes)
+                   .Skip((request.PageNumber - 1) * request.PageSize)
+                   .Take(request.PageSize)
+                   .Select(u => new GetUserDetailsVm
+                   {
+                       Id = u.Id,
+                       UserTypeId = u.UserTypeId,
+                       UserType = u.userTypes.UserType,
+                       FirstName = u.FirstName,
+                       LastName = u.LastName,
+                       Password = u.Password,
+                       Email = u.Email,
+                       Mobile = u.Mobile,
+                       UpdationDate = u.UpdationDate,
+                       Enabled = u.Enabled,
+                       Deleted = u.Deleted,
+                       CreatedBy = u.CreatedBy,
+                       UpdatedBy = u.UpdatedBy
+                   })
+                   .ToListAsync();
+                int totalRecords = result.Count;
+                return (totalRecords, result);
+                ;
 
-            return result;
+            }
+            else
+            {
+                var result = await _dbContext.userMasterEntity
+                   .Include(u => u.userTypes)
+                   .Skip((request.PageNumber - 1) * request.PageSize)
+                   .Take(request.PageSize)
+                   .Select(u => new GetUserDetailsVm
+                   {
+                       Id = u.Id,
+                       UserTypeId = u.UserTypeId,
+                       UserType = u.userTypes.UserType,
+                       FirstName = u.FirstName,
+                       LastName = u.LastName,
+                       Password = u.Password,
+                       Email = u.Email,
+                       Mobile = u.Mobile,
+                       UpdationDate = u.UpdationDate,
+                       Enabled = u.Enabled,
+                       Deleted = u.Deleted,
+                       CreatedBy = u.CreatedBy,
+                       UpdatedBy = u.UpdatedBy
+                   })
+                   .ToListAsync();
+                int totalRecords = _dbContext.userMasterEntity.Count();
+                return (totalRecords, result);
+              
+
+            }
+
         }
         public async Task<UserMasterVm> ValidateLogin(UserMasterQuery request)
         {
@@ -64,7 +98,8 @@ namespace User.Infrastructure.Repositories
                     AccessToken = token,
                     ExpiresIn = _token.Expiry,
                     TokenType = "Bearer",
-                    Name = result.FirstName + " " + result.LastName,                                                                                                           
+                    UserId = result.Id,
+                    Name = result.FirstName + " " + result.LastName,
                     UserType = _dbContext.userTypesEntity.Where(x => x.Id == result.UserTypeId).Select(x => x.UserType).FirstOrDefault()
                 };
             }

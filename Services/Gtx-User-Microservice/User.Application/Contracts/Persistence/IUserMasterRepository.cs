@@ -13,6 +13,7 @@ namespace User.Application.Contracts.Persistence
     {
         Task<UserMasterVm> ValidateLogin(UserMasterQuery request);
 
-        Task<IReadOnlyList<GetUserDetailsVm>> GetUsersAsync(GetUserQuery request);
+        Task<(int totalRecords, IReadOnlyList<GetUserDetailsVm> userDetails)> GetUsersAsync(GetUserQuery request);
+        
     }
 }

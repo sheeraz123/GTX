@@ -23,10 +23,10 @@ namespace User.Application.Features.UserMaster.GetUsersList
 
         public async Task<GetUserVm> Handle(GetUserQuery request, CancellationToken cancellationToken)
         {
-            var result= await _userMasterRepository.GetUsersAsync(request);
+            var (totalCount, result)= await _userMasterRepository.GetUsersAsync(request);
             return new GetUserVm()
             {
-                TotalRecords = result.Count,
+                TotalRecords = totalCount,
                 UserDetails = result
                 
             };
