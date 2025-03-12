@@ -20,4 +20,8 @@
     <ProjectReference Include="..\user.domain\User.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\CompanyMaster\Command\" />
+  </ItemGroup>
+
 </Project>
