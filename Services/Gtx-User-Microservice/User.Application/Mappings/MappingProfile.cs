@@ -1,6 +1,9 @@
 ﻿
 
 using AutoMapper;
+using User.Application.Features.CityMaster.Query;
+using User.Application.Features.CountryMaster.Query;
+using User.Application.Features.StateMaster.Query;
 using User.Application.Features.UserMaster.Command.AddUserMaster;
 using User.Application.Features.UserMaster.Command.UpdateUserMaster;
 using User.Application.Features.UserMaster.GetUsersList;
@@ -23,6 +26,9 @@ namespace User.Application.Mappings
             CreateMap<UserMaster, AddUserMasterVm>().ReverseMap();
             CreateMap<UserMaster, UpdateUserMasterCommand>().ReverseMap();
             CreateMap<UserMaster, UpdateUserMasterVm>().ReverseMap();
+            CreateMap<CountryMaster, GetCountryVm>().ReverseMap();
+            CreateMap<StateMaster, GetStateVm>().ReverseMap();
+            CreateMap<CityMaster, GetCityVm>().ReverseMap();
         }
     }
 }

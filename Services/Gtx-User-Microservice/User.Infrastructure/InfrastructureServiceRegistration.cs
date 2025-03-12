@@ -22,6 +22,11 @@ namespace user.infrastructure
             services.AddTransient(typeof(IAsyncRepository<SqlContext>), typeof(RepositoryBase<SqlContext>));
             services.AddScoped<IUserTypeRepository, UserTypeRepositories>();
             services.AddScoped<IUserMasterRepository, UserMasterRepositories>();
+            services.AddScoped<ICountryRepository, CountryRepositories>();
+            services.AddScoped<IStateRepository, StateRepositories>();
+            services.AddScoped<ICityRepository, CityRepositories>();
+            services.AddScoped<ICompanyMasterRepository, CompanyMasterRepositories>();
+            services.AddScoped<IClientMasterRepository, ClientMasterRepositories>();
             return services;
         }
     }

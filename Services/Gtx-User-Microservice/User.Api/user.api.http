@@ -64,3 +64,25 @@ Content-Type: application/json
 }
 
 ###
+
+GET {{User.Api_HostAddress}}/api/country
+
+###
+
+
+@id=0
+GET {{User.Api_HostAddress}}/api/city?id={{id}}
+
+###
+
+GET {{User.Api_HostAddress}}/api/state?id={{1}}
+
+###
+
+GET {{User.Api_HostAddress}}/api/state?id={{id}}
+
+###
+
+GET {{User.Api_HostAddress}}/api/company?pageNumber={{pageNumber}}&pagesize={{pagesize}}
+
+###
