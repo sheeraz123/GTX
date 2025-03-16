@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using User.Application.Features.ClientMaster.Query;
-using User.Application.Features.UserMaster.GetUsersList;
-using User.Application.Features.UserMaster.Query;
+﻿using User.Application.Features.ClientMasters.Command.AddClient;
+using User.Application.Features.ClientMasters.Command.UpdateClient;
+using User.Application.Features.ClientMasters.Query;
 using User.Domain.Entities;
 
 namespace User.Application.Contracts.Persistence
@@ -14,6 +9,7 @@ namespace User.Application.Contracts.Persistence
     {
 
         Task<(int totalRecords, IReadOnlyList<GetClientDetailsVm> details)> GetClientAsync(GetClientQuery request);
+     
         
     }
 }

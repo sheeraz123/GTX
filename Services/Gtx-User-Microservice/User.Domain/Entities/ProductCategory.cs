@@ -8,22 +8,18 @@ using System.Threading.Tasks;
 
 namespace User.Domain.Entities
 {
-    [Table("tbl_CountryMaster")]
-    public class CountryMaster
+    [Table("tbl_ProductCategory")]
+    public class ProductCategory
     {
         [Key]
         public int Id { get; set; }
-        public required string CountryName { get; set; }
-        public required string? CountryCode { get; set; }
+        public required string ProductCategoryName { get; set; }
+        public  string? CategoryCode { get; set; }
         public DateTime CreationDate { get; set; } = DateTime.Now;
         public DateTime? UpdationDate { get; set; }
         public required bool Enabled { get; set; } = true;
         public required bool Deleted { get; set; } = false;
-        public string? CreatedBy { get; set; }
-        public string? UpdatedBy { get; set; }
-        public ICollection<ClientMaster> clientMasters { get; set; }
-        //public ICollection<StateMaster> StateMasters{ get; set; }
-
-        //public ICollection<CityMaster> cityMasters{ get; set; }
+        public decimal? CreatedBy { get; set; }
+        public decimal? UpdatedBy { get; set; }
     }
 }

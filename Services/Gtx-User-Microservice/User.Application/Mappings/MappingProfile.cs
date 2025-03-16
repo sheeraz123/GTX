@@ -2,7 +2,12 @@
 
 using AutoMapper;
 using User.Application.Features.CityMaster.Query;
+using User.Application.Features.ClientMasters.Command.AddClient;
+using User.Application.Features.ClientMasters.Command.UpdateClient;
+using User.Application.Features.CompanyMasters.Command.AddCompany;
+using User.Application.Features.CompanyMasters.Command.UpdateCompany;
 using User.Application.Features.CountryMaster.Query;
+using User.Application.Features.ProductCategories.Command.AddProductCategory;
 using User.Application.Features.StateMaster.Query;
 using User.Application.Features.UserMaster.Command.AddUserMaster;
 using User.Application.Features.UserMaster.Command.UpdateUserMaster;
@@ -29,6 +34,20 @@ namespace User.Application.Mappings
             CreateMap<CountryMaster, GetCountryVm>().ReverseMap();
             CreateMap<StateMaster, GetStateVm>().ReverseMap();
             CreateMap<CityMaster, GetCityVm>().ReverseMap();
+            CreateMap<CompanyMaster, AddCompanyCommand>().ReverseMap();
+            CreateMap<CompanyMaster, AddCompanyVm>().ReverseMap();
+            CreateMap<CompanyMaster, UpdateCompanyCommand>().ReverseMap();
+            CreateMap<CompanyMaster, UpdateCompanyVm>().ReverseMap();
+            CreateMap<ClientMaster, UpdateClientCommand>().ReverseMap();
+            CreateMap<ClientMaster, AddClientCommand>().ReverseMap();
+            CreateMap<ClientMaster, AddClientVm>().ReverseMap();
+            CreateMap<ClientMaster, UpdateClientVm>().ReverseMap();
+
+            CreateMap<ProductCategory, AddProductCategoryVm>().ReverseMap();
+            CreateMap<ProductCategory, AddProductCategoryCommand>().ReverseMap();
+            CreateMap<ProductCategory, UpdateProductCategoryCommand>().ReverseMap();
+            CreateMap<ProductCategory, UpdateProductCategoryVm>().ReverseMap();
+
         }
     }
 }

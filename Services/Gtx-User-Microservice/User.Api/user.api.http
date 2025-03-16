@@ -86,3 +86,16 @@ GET {{User.Api_HostAddress}}/api/state?id={{id}}
 GET {{User.Api_HostAddress}}/api/company?pageNumber={{pageNumber}}&pagesize={{pagesize}}
 
 ###
+
+POST {{User.Api_HostAddress}}/api/company
+Content-Type: application/json
+
+{
+  //AddCompanyCommand
+}
+
+###
+
+GET {{User.Api_HostAddress}}/api/productcategory?pageNumber={{pageNumber}}&pagesize={{pagesize}}
+
+###

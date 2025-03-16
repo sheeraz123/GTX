@@ -1,14 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using User.Application.Contracts.Persistence;
-using User.Application.Features.UserMaster.Query;
 
-namespace User.Application.Features.ClientMaster.Query
+namespace User.Application.Features.ClientMasters.Query
 {
     class GetClientHandler : IRequestHandler<GetClientQuery, GetClientVm>
     {

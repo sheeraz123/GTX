@@ -2,7 +2,7 @@
 using MediatR;
 using User.Application.Contracts.Persistence;
 
-namespace User.Application.Features.CompanyMaster.Query
+namespace User.Application.Features.CompanyMasters.Query
 {
     class GetClientHandler : IRequestHandler<GetCompanyQuery, GetCompanyVm>
     {

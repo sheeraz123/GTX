@@ -29,5 +29,8 @@ namespace User.Domain.Entities
         [ForeignKey("countryMaster")]
         public int CountryId { get; set; }
         public CountryMaster countryMaster { get; set; }
+
+        public ICollection<ClientMaster>? clientMasters { get; set; }
+
     }
 }

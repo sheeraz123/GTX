@@ -16,5 +16,6 @@ namespace User.Infrastructure
         public DbSet<CityMaster> cityMastersEntity { get; set; }
         public DbSet<CompanyMaster> companyMasterEntity { get; set; }
         public DbSet<ClientMaster> clientMasterEntity { get; set; }
+        public DbSet<ProductCategory> productCategoryEntity { get; set; }
     }
 }
