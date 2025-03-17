@@ -28,6 +28,7 @@ namespace user.infrastructure
             services.AddScoped<ICompanyMasterRepository, CompanyMasterRepositories>();
             services.AddScoped<IClientMasterRepository, ClientMasterRepositories>();
             services.AddScoped<IProductCategoryRepository, ProductCategoryRepositories>();
+            services.AddScoped<IProductMasterRepository, ProductMasterRepositories>();
             return services;
         }
     }

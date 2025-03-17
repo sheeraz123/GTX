@@ -15,6 +15,7 @@ namespace User.Application.Contracts.Persistence
                                        List<Expression<Func<T, object>>>? includes = null,
                                        bool disableTracking = true);
         Task<T> GetByIdAsync(int id);
+        Task<T> GetByIdAsync(decimal id);
         Task<T> AddAsync(T entity);
         Task<T> UpdateAsync(T entity);
         Task DeleteAsync(T entity);

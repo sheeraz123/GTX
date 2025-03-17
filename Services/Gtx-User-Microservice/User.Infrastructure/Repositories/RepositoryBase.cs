@@ -88,5 +88,10 @@ namespace user.infrastructure
             _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task<T> GetByIdAsync(decimal id)
+        {
+            return await _dbContext.Set<T>().FindAsync(id);
+        }
     }
 }

@@ -8,6 +8,9 @@ using User.Application.Features.CompanyMasters.Command.AddCompany;
 using User.Application.Features.CompanyMasters.Command.UpdateCompany;
 using User.Application.Features.CountryMaster.Query;
 using User.Application.Features.ProductCategories.Command.AddProductCategory;
+using User.Application.Features.ProductMasters.Command.AddProductMaster;
+using User.Application.Features.ProductMasters.Command.UpdateProductMaster;
+using User.Application.Features.ProductMasters.Query.GetProductMaster;
 using User.Application.Features.StateMaster.Query;
 using User.Application.Features.UserMaster.Command.AddUserMaster;
 using User.Application.Features.UserMaster.Command.UpdateUserMaster;
@@ -47,6 +50,12 @@ namespace User.Application.Mappings
             CreateMap<ProductCategory, AddProductCategoryCommand>().ReverseMap();
             CreateMap<ProductCategory, UpdateProductCategoryCommand>().ReverseMap();
             CreateMap<ProductCategory, UpdateProductCategoryVm>().ReverseMap();
+
+            CreateMap<ProductMaster, AddProductMasterCommand>().ReverseMap();
+            CreateMap<ProductMaster, AddProductMasterVm>().ReverseMap();
+
+            CreateMap<ProductMaster, UpdateProductMasterCommand>().ReverseMap();
+            CreateMap<ProductMaster, GetProductMasterVm>().ReverseMap();
 
         }
     }

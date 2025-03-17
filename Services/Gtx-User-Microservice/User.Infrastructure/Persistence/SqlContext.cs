@@ -17,5 +17,7 @@ namespace User.Infrastructure
         public DbSet<CompanyMaster> companyMasterEntity { get; set; }
         public DbSet<ClientMaster> clientMasterEntity { get; set; }
         public DbSet<ProductCategory> productCategoryEntity { get; set; }
+        // ...existing code...
+        public DbSet<ProductMaster> productMasterEntity { get; set; }
     }
 }
