@@ -32,18 +32,17 @@ namespace User.Api.Controllers
             return response;
         }
 
-        [Consumes("application/json")]
-        [Produces("application/json")]
+       
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status502BadGateway)]
-        public async Task<IActionResult> UpdateProductMaster([FromBody] UpdateProductMasterCommand command)
+        public async Task<UpdateProductMasterVm> UpdateProductMaster([FromForm] UpdateProductMasterCommand command)
         {
             var response = await _mediator.Send(command);
-            return Ok(response);
+            return response;
         }
 
         [Consumes("application/json")]

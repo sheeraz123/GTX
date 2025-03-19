@@ -1,6 +1,8 @@
 using AutoMapper;
+using Common.Miscellaneous.Models;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
 using User.Application.Contracts.Persistence;
 using User.Domain.Entities;
 
@@ -11,10 +13,13 @@ namespace User.Application.Features.ProductMasters.Command.AddProductMaster
         private readonly IProductMasterRepository _productMasterRepository;
         private readonly IMapper _mapper;
 
-        public AddProductMasterHandler(IProductMasterRepository productMasterRepository, IMapper mapper)
+        private readonly ImageServer _imageServer;
+        public AddProductMasterHandler(IProductMasterRepository productMasterRepository, IMapper mapper, IOptions<ImageServer> imageServer)
         {
             _productMasterRepository = productMasterRepository;
             _mapper = mapper;
+
+            _imageServer = imageServer.Value;
         }
 
         public async Task<AddProductMasterVm> Handle(AddProductMasterCommand request, CancellationToken cancellationToken)
@@ -30,16 +35,19 @@ namespace User.Application.Features.ProductMasters.Command.AddProductMaster
                     ResponseMessage = "Product Master Already exists"
                 };
             }
-            var filePath = await SaveFileAsync(request.Image,request.ProductCode);
+            if (request.Image != null)
+            {
+                var filePath = await SaveFileAsync(request.Image, request.ProductCode);
 
-            // Set the file path to the entity
-            entity.ProductImage = Path.Combine(request.ProductCode,request.Image.FileName);
+                // Set the file path to the entity
+                entity.ProductImage = Path.Combine(_imageServer.Path ?? "", request.ProductCode, request.Image.FileName);
+            }
             var result = await _productMasterRepository.AddAsync(entity);
             return _mapper.Map<AddProductMasterVm>(result);
         }
-        private async Task<string> SaveFileAsync(IFormFile file,string productCode)
+        private async Task<string> SaveFileAsync(IFormFile file, string productCode)
         {
-            
+
             var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
             string path = Path.Combine(folderPath, productCode);
             if (!Directory.Exists(path))

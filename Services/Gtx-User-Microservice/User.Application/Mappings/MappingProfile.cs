@@ -55,7 +55,9 @@ namespace User.Application.Mappings
             CreateMap<ProductMaster, AddProductMasterVm>().ReverseMap();
 
             CreateMap<ProductMaster, UpdateProductMasterCommand>().ReverseMap();
+            
             CreateMap<ProductMaster, GetProductMasterVm>().ReverseMap();
+            CreateMap<ProductMaster, UpdateProductMasterVm>().ReverseMap();
 
         }
     }

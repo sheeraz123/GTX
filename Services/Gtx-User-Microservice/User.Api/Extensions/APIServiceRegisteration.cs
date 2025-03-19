@@ -19,6 +19,7 @@ namespace User.Api.Extensions
             configurationManager.AddJsonFile($"appsettings.{envVariable}.json", optional: false, reloadOnChange: true);
             services.AddOptions();
             services.Configure<Token>(configuration.GetSection("Token"));
+            services.Configure<ImageServer>(configuration.GetSection("ImageServer"));
             // Add services to the container.
             AuthConfig.AuthServiceConfiguration(services, env, configurationManager, configuration, host);
             services.AddApplicationServices();

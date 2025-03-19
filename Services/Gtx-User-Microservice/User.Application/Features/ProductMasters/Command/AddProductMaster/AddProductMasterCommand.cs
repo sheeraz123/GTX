@@ -10,7 +10,7 @@ namespace User.Application.Features.ProductMasters.Command.AddProductMaster
         public required string ProductDescription { get; set; }
         public required string ProductCode { get; set; }
         public required string ProductImage { get; set; }
-        public required IFormFile Image { get; set; }
+        public  IFormFile? Image { get; set; }
         public required string HSNCode { get; set; }
         public required decimal MRP { get; set; }
         public int ProductCategoryId { get; set; }
