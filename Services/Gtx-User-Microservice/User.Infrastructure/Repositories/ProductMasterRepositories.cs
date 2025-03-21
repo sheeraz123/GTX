@@ -95,7 +95,7 @@ namespace User.Infrastructure.Repositories
                   })
                   .AsNoTracking()
                   .ToListAsync();
-                int totalRecords = result.Count;
+                int totalRecords = _dbContext.productMasterEntity.Count();
                 return (totalRecords, result);
             }
         }

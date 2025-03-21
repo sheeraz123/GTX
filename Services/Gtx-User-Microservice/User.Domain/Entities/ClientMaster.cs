@@ -40,5 +40,7 @@ namespace User.Domain.Entities
         [ForeignKey("cityMaster")]
         public int CityId { get; set; }
         public CityMaster? cityMaster { get; set; }
+
+        public ICollection<StockInvoice>? stockInvoices { get; set; }
     }
 }

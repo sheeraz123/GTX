@@ -19,5 +19,9 @@ namespace User.Infrastructure
         public DbSet<ProductCategory> productCategoryEntity { get; set; }
         // ...existing code...
         public DbSet<ProductMaster> productMasterEntity { get; set; }
+        public DbSet<StockCategory> StockCategoriesEntity { get; set; }
+        // ...existing code...
+        public DbSet<StockInvoice> stockInvoicesEntity { get; set; }
+        public DbSet<StockMaster> stockMastersEntity { get; set; }
     }
 }

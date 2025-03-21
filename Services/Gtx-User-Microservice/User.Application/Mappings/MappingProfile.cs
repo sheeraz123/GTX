@@ -12,6 +12,9 @@ using User.Application.Features.ProductMasters.Command.AddProductMaster;
 using User.Application.Features.ProductMasters.Command.UpdateProductMaster;
 using User.Application.Features.ProductMasters.Query.GetProductMaster;
 using User.Application.Features.StateMaster.Query;
+using User.Application.Features.Stocks.StockCategories.Command.Add;
+using User.Application.Features.Stocks.StockCategories.Command.Update;
+
 using User.Application.Features.UserMaster.Command.AddUserMaster;
 using User.Application.Features.UserMaster.Command.UpdateUserMaster;
 using User.Application.Features.UserMaster.GetUsersList;
@@ -45,19 +48,25 @@ namespace User.Application.Mappings
             CreateMap<ClientMaster, AddClientCommand>().ReverseMap();
             CreateMap<ClientMaster, AddClientVm>().ReverseMap();
             CreateMap<ClientMaster, UpdateClientVm>().ReverseMap();
-
             CreateMap<ProductCategory, AddProductCategoryVm>().ReverseMap();
             CreateMap<ProductCategory, AddProductCategoryCommand>().ReverseMap();
             CreateMap<ProductCategory, UpdateProductCategoryCommand>().ReverseMap();
             CreateMap<ProductCategory, UpdateProductCategoryVm>().ReverseMap();
-
             CreateMap<ProductMaster, AddProductMasterCommand>().ReverseMap();
             CreateMap<ProductMaster, AddProductMasterVm>().ReverseMap();
-
-            CreateMap<ProductMaster, UpdateProductMasterCommand>().ReverseMap();
-            
+            CreateMap<ProductMaster, UpdateProductMasterCommand>().ReverseMap();            
             CreateMap<ProductMaster, GetProductMasterVm>().ReverseMap();
             CreateMap<ProductMaster, UpdateProductMasterVm>().ReverseMap();
+            CreateMap<StockCategory, AddVm>().ReverseMap();
+            CreateMap<StockCategory, AddCommand>().ReverseMap();
+            CreateMap<StockCategory, UpdateCommand>().ReverseMap();
+            CreateMap<StockCategory, UpdateVm>().ReverseMap();
+            CreateMap<StockInvoice, Features.Stocks.StockInvoices.Command.Add.AddCommand>().ReverseMap();
+            CreateMap<StockInvoice, Features.Stocks.StockInvoices.Command.Add.AddVm>().ReverseMap();
+            CreateMap<StockInvoice, Features.Stocks.StockInvoices.Command.Update.UpdateCommand>().ReverseMap();
+            CreateMap<StockInvoice, Features.Stocks.StockInvoices.Query.GetData.GetVm>().ReverseMap();
+            CreateMap<StockInvoice, Features.Stocks.StockInvoices.Command.Update.UpdateVm>().ReverseMap();
+
 
         }
     }

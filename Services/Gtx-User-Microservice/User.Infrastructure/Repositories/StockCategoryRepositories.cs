@@ -2,35 +2,30 @@ using User.Application.Contracts.Persistence;
 using User.Domain.Entities;
 using user.infrastructure;
 using Microsoft.EntityFrameworkCore;
-using User.Application.Features.ClientMasters.Query;
-using User.Application.Features.ProductCategories.Query.GetProductCategory;
-using User.Application.Features.ProductCategories.Query;
+using User.Application.Features.Stocks.StockCategories.Query.GetData;
+
 
 namespace User.Infrastructure.Repositories
 {
-    public class ProductCategoryRepositories : RepositoryBase<ProductCategory>, IProductCategoryRepository
+    public class StockCategoryRepositories : RepositoryBase<StockCategory>, IStockCategoryRepository
     {
-        public ProductCategoryRepositories(SqlContext dbContext) : base(dbContext)
+        public StockCategoryRepositories(SqlContext dbContext) : base(dbContext)
         {
         }
 
-        public async Task<int> AddProductCategoryAsync(ProductCategory productCategory)
-        {
-            await _dbContext.productCategoryEntity.AddAsync(productCategory);
-            return await _dbContext.SaveChangesAsync();
-        }
-        public async Task<(int totalRecords, IReadOnlyList<GetProductCategoryDetailsVm> details)> GetProductCategoryAsync(GetProductCategoryQuery request)
+       
+        public async Task<(int totalRecords, IReadOnlyList<GetDetailsVm> details)> GetDetails(GetQuery request)
         {
             if (request.Id > 0)
             {
-                var result = await _dbContext.productCategoryEntity.Where(u => u.Id == request.Id)
+                var result = await _dbContext.StockCategoriesEntity.Where(u => u.Id == request.Id)
                    .Skip((request.PageNumber - 1) * request.PageSize)
                    .Take(request.PageSize)
-                   .Select(u => new GetProductCategoryDetailsVm
+                   .Select(u => new GetDetailsVm
                    {
                        Id = u.Id,
-                       ProductCategoryName = u.ProductCategoryName,
-                       CategoryCode = u.CategoryCode,
+                       StockName = u.StockName,
+                       StockCode= u.StockCode,
                        UpdationDate = u.UpdationDate,
                        Enabled = u.Enabled,
                        Deleted = u.Deleted,
@@ -46,15 +41,15 @@ namespace User.Infrastructure.Repositories
             }
             else if (!string.IsNullOrWhiteSpace(request.Search))
             {
-                var result = await _dbContext.productCategoryEntity.Where(u => u.ProductCategoryName.StartsWith(request.Search))
+                var result = await _dbContext.StockCategoriesEntity.Where(u => u.StockName.StartsWith(request.Search))
 
                  .Skip((request.PageNumber - 1) * request.PageSize)
                  .Take(request.PageSize)
-                 .Select(u => new GetProductCategoryDetailsVm
+                 .Select(u => new GetDetailsVm
                  {
                      Id = u.Id,
-                     ProductCategoryName = u.ProductCategoryName,
-                     CategoryCode = u.CategoryCode,
+                     StockName = u.StockName,
+                     StockCode = u.StockCode,
                      UpdationDate = u.UpdationDate,
                      Enabled = u.Enabled,
                      Deleted = u.Deleted,
@@ -68,14 +63,14 @@ namespace User.Infrastructure.Repositories
             }
             else
             {
-                var result = await _dbContext.productCategoryEntity
+                var result = await _dbContext.StockCategoriesEntity
                    .Skip((request.PageNumber - 1) * request.PageSize)
                    .Take(request.PageSize)
-                  .Select(u => new GetProductCategoryDetailsVm
+                  .Select(u => new GetDetailsVm
                   {
                       Id = u.Id,
-                      ProductCategoryName = u.ProductCategoryName,
-                      CategoryCode = u.CategoryCode,
+                      StockName = u.StockName,
+                      StockCode = u.StockCode,
                       UpdationDate = u.UpdationDate,
                       Enabled = u.Enabled,
                       Deleted = u.Deleted,
@@ -84,7 +79,7 @@ namespace User.Infrastructure.Repositories
                   })
                   .AsNoTracking()
                    .ToListAsync();
-                int totalRecords = _dbContext.productCategoryEntity.Count();
+                int totalRecords = _dbContext.StockCategoriesEntity.Count();
                 return (totalRecords, result);
 
 
