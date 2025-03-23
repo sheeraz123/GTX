@@ -79,6 +79,12 @@ namespace User.Application.Mappings
             CreateMap<SizeMaster, Features.Misc.SizeMasters.Query.GetData.GetVm>().ReverseMap();
             CreateMap<SizeMaster, Features.Misc.SizeMasters.Command.Update.UpdateVm>().ReverseMap();
 
+            CreateMap<ColorMaster, Features.Misc.ColorMasters.Command.Add.AddCommand>().ReverseMap();
+            CreateMap<ColorMaster, Features.Misc.ColorMasters.Command.Add.AddVm>().ReverseMap();
+            CreateMap<ColorMaster, Features.Misc.ColorMasters.Command.Update.UpdateCommand>().ReverseMap();
+            CreateMap<ColorMaster, Features.Misc.ColorMasters.Query.GetData.GetVm>().ReverseMap();
+            CreateMap<ColorMaster, Features.Misc.ColorMasters.Command.Update.UpdateVm>().ReverseMap();
+
 
         }
     }
