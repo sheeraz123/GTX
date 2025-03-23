@@ -22,7 +22,7 @@ namespace User.Application.Features.Stocks.StockMasters.Query.GetData
         public decimal? CreatedBy { get; set; }
         public decimal? UpdatedBy { get; set; }
         public Domain.Entities.StockCategory? stockCategory{ get; set; }
-
+        public string? HsnCode { get; set; }
 
     }
 }

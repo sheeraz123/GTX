@@ -18,6 +18,7 @@ public class UpdateCommand : IRequest<UpdateVm>
     public required decimal CreatedBy { get; set; }
 
     public required decimal UpdatedBy { get; set; }
+    public string? HsnCode { get; set; }
     public required DateTime UpdationDate { get; set; } = DateTime.Now;
     public IFormFile? Image { get; set; }
 }

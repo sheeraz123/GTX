@@ -16,6 +16,8 @@ namespace User.Domain.Entities
         public required bool Deleted { get; set; } = false;
         public decimal? CreatedBy { get; set; }
         public decimal? UpdatedBy { get; set; }
+
+        public required int CalculatePerPair { get; set; }
         public ICollection<StockInvoice>? stockInvoices{ get; set; }
         public ICollection<StockMaster>? stockMaster{ get; set; }
     }

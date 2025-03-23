@@ -1,4 +1,5 @@
 using AutoMapper;
+using Common.Miscellaneous;
 using Common.Miscellaneous.Models;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -37,7 +38,7 @@ namespace User.Application.Features.ProductMasters.Command.AddProductMaster
             }
             if (request.Image != null)
             {
-                var filePath = await SaveFileAsync(request.Image, request.ProductCode);
+                var filePath = await FileStorage.SaveFileAsync (request.Image, _imageServer.FileStoragePath, request.ProductCode);
 
                 // Set the file path to the entity
                 entity.ProductImage = Path.Combine(_imageServer.Path ?? "", request.ProductCode, request.Image.FileName);
@@ -45,25 +46,7 @@ namespace User.Application.Features.ProductMasters.Command.AddProductMaster
             var result = await _productMasterRepository.AddAsync(entity);
             return _mapper.Map<AddProductMasterVm>(result);
         }
-        private async Task<string> SaveFileAsync(IFormFile file, string productCode)
-        {
-
-            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
-            string path = Path.Combine(folderPath, productCode);
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-
-            var filePath = Path.Combine(path, file.FileName);
-
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await file.CopyToAsync(stream);
-            }
-
-            return filePath;
-        }
+   
     }
 }
 

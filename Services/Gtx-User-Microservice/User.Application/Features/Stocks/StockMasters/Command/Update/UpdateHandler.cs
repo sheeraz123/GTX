@@ -35,7 +35,7 @@ namespace User.Application.Features.Stocks.StockMasters.Command.Update
             }
             if (request.Image != null)
             {
-                var filePiath = await FileStorage.SaveFileAsync(request.Image, request.StockCode);
+                var filePiath = await FileStorage.SaveFileAsync(request.Image, _imageServer.FileStoragePath, request.StockCode);
                 entity.StockImage = Path.Combine(_imageServer.Path ?? "", request.StockCode, request.Image.FileName);
             }
             var result = await _repository.UpdateAsync(entity);

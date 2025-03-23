@@ -8,6 +8,7 @@ namespace Common.Miscellaneous.Models
 {
     public class ImageServer
     {
+        public string? FileStoragePath { get; set; }
         public  string? Path { get; set; }
     }
 }

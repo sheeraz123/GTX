@@ -15,7 +15,7 @@ namespace User.Application.Features.Stocks.StockMasters.Command.Add
         public bool Enabled { get; set; }
         public bool Deleted { get; set; }
         public required decimal CreatedBy { get; set; }
-
+        public string? HsnCode { get; set; }
         public IFormFile? Image { get; set; }
     }
 }

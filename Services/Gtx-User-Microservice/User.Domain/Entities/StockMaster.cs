@@ -29,6 +29,7 @@ namespace User.Domain.Entities
         [ForeignKey("StockCategory")]
         public int StockCategoryId { get; set; }
         public StockCategory? StockCategory { get; set; }
+        public  string? HsnCode { get; set; }
 
     }
 }

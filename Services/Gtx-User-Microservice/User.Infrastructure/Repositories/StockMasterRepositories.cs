@@ -34,7 +34,8 @@ namespace User.Infrastructure.Repositories
                        Enabled = u.Enabled,
                        Deleted = u.Deleted,
                        CreatedBy = u.CreatedBy,
-                       UpdatedBy = u.UpdatedBy
+                       UpdatedBy = u.UpdatedBy,
+                       HsnCode=u.HsnCode
                    })
                    .AsNoTracking()
                    .ToListAsync();
@@ -62,7 +63,8 @@ namespace User.Infrastructure.Repositories
                      Enabled = u.Enabled,
                      Deleted = u.Deleted,
                      CreatedBy = u.CreatedBy,
-                     UpdatedBy = u.UpdatedBy
+                     UpdatedBy = u.UpdatedBy,
+                     HsnCode = u.HsnCode
                  })
                  .AsNoTracking()
                  .ToListAsync();
@@ -88,7 +90,8 @@ namespace User.Infrastructure.Repositories
                       Enabled = u.Enabled,
                       Deleted = u.Deleted,
                       CreatedBy = u.CreatedBy,
-                      UpdatedBy = u.UpdatedBy
+                      UpdatedBy = u.UpdatedBy,
+                      HsnCode = u.HsnCode
                   })
                   .AsNoTracking()
                    .ToListAsync();

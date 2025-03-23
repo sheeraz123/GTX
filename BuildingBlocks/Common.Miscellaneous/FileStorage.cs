@@ -9,10 +9,10 @@ namespace Common.Miscellaneous
 {
     public static class FileStorage
     {
-        public async static Task<string> SaveFileAsync(IFormFile file, string productCode)
+        public async static Task<string> SaveFileAsync(IFormFile file, string fileStoragePath, string productCode,string folderType= "images")
         {
 
-            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
+            var folderPath = Path.Combine(fileStoragePath, folderType);
             string path = Path.Combine(folderPath, productCode);
             if (!Directory.Exists(path))
             {

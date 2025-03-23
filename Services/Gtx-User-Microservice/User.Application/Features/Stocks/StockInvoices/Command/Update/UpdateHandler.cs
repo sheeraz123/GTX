@@ -35,7 +35,7 @@ namespace User.Application.Features.Stocks.StockInvoices.Command.Update
             }
             if (request.Image != null)
             {
-                var filePiath = await FileStorage.SaveFileAsync(request.Image, request.ProductCode);
+                var filePiath = await FileStorage.SaveFileAsync(request.Image, _imageServer.FileStoragePath, request.ProductCode);
                 entity.BillImage = Path.Combine(_imageServer.Path ?? "", request.ProductCode, request.Image.FileName);
             }
             var result = await _repository.UpdateAsync(entity);

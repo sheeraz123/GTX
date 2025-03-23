@@ -1,4 +1,5 @@
 using AutoMapper;
+using Common.Miscellaneous;
 using Common.Miscellaneous.Models;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -36,32 +37,14 @@ namespace User.Application.Features.ProductMasters.Command.UpdateProductMaster
             }
             if (request.Image != null)
             {
-                var filePiath = await SaveFileAsync(request.Image, request.ProductCode);
+                var filePiath = await FileStorage.SaveFileAsync(request.Image, _imageServer.FileStoragePath, request.ProductCode);
                 entity.ProductImage = Path.Combine(_imageServer.Path ?? "", request.ProductCode, request.Image.FileName);
             }
 
             var result = await _productMasterRepository.UpdateAsync(entity);
             return _mapper.Map<UpdateProductMasterVm>(result);
         }
-        private async Task<string> SaveFileAsync(IFormFile file, string productCode)
-        {
 
-            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
-            string path = Path.Combine(folderPath, productCode);
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-
-            var filePath = Path.Combine(path, file.FileName);
-
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await file.CopyToAsync(stream);
-            }
-
-            return filePath;
-        }
     }
 }
 

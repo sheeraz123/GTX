@@ -18,5 +18,7 @@ namespace User.Application.Features.Stocks.StockCategories.Query.GetData
         public required bool Deleted { get; set; } 
         public decimal? CreatedBy { get; set; }
         public decimal? UpdatedBy { get; set; }
+        public required int CalculatePerPair { get; set; }
+        
     }
 }

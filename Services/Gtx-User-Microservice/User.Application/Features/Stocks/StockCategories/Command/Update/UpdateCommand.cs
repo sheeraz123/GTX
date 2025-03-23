@@ -11,6 +11,8 @@ namespace User.Application.Features.Stocks.StockCategories.Command.Update
         public required bool Deleted { get; set; }
         public required decimal CreatedBy { get; set; }
         public required decimal UpdatedBy { get; set; }
+
+        public required int CalculatePerPair { get; set; }  
         public  DateTime UpdationDate { get; set; } = DateTime.Now;
     }
 }

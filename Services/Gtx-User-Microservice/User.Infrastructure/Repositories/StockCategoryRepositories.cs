@@ -13,7 +13,7 @@ namespace User.Infrastructure.Repositories
         {
         }
 
-       
+
         public async Task<(int totalRecords, IReadOnlyList<GetDetailsVm> details)> GetDetails(GetQuery request)
         {
             if (request.Id > 0)
@@ -25,12 +25,13 @@ namespace User.Infrastructure.Repositories
                    {
                        Id = u.Id,
                        StockName = u.StockName,
-                       StockCode= u.StockCode,
+                       StockCode = u.StockCode,
                        UpdationDate = u.UpdationDate,
                        Enabled = u.Enabled,
                        Deleted = u.Deleted,
                        CreatedBy = u.CreatedBy,
-                       UpdatedBy = u.UpdatedBy
+                       UpdatedBy = u.UpdatedBy,
+                       CalculatePerPair = u.CalculatePerPair
                    })
                    .AsNoTracking()
                    .ToListAsync();
@@ -54,7 +55,9 @@ namespace User.Infrastructure.Repositories
                      Enabled = u.Enabled,
                      Deleted = u.Deleted,
                      CreatedBy = u.CreatedBy,
-                     UpdatedBy = u.UpdatedBy
+                     UpdatedBy = u.UpdatedBy,
+
+                     CalculatePerPair = u.CalculatePerPair
                  })
                  .AsNoTracking()
                  .ToListAsync();
@@ -75,7 +78,8 @@ namespace User.Infrastructure.Repositories
                       Enabled = u.Enabled,
                       Deleted = u.Deleted,
                       CreatedBy = u.CreatedBy,
-                      UpdatedBy = u.UpdatedBy
+                      UpdatedBy = u.UpdatedBy,
+                      CalculatePerPair = u.CalculatePerPair
                   })
                   .AsNoTracking()
                    .ToListAsync();
