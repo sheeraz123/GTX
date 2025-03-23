@@ -73,6 +73,12 @@ namespace User.Application.Mappings
             CreateMap<StockMaster, Features.Stocks.StockMasters.Query.GetData.GetVm>().ReverseMap();
             CreateMap<StockMaster, Features.Stocks.StockMasters.Command.Update.UpdateVm>().ReverseMap();
 
+            CreateMap<SizeMaster, Features.Misc.SizeMasters.Command.Add.AddCommand>().ReverseMap();
+            CreateMap<SizeMaster, Features.Misc.SizeMasters.Command.Add.AddVm>().ReverseMap();
+            CreateMap<SizeMaster, Features.Misc.SizeMasters.Command.Update.UpdateCommand>().ReverseMap();
+            CreateMap<SizeMaster, Features.Misc.SizeMasters.Query.GetData.GetVm>().ReverseMap();
+            CreateMap<SizeMaster, Features.Misc.SizeMasters.Command.Update.UpdateVm>().ReverseMap();
+
 
         }
     }

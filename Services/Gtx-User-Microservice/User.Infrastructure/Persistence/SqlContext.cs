@@ -23,5 +23,7 @@ namespace User.Infrastructure
         // ...existing code...
         public DbSet<StockInvoice> stockInvoicesEntity { get; set; }
         public DbSet<StockMaster> stockMastersEntity { get; set; }
+        public DbSet<ColorMaster> colorMasterEntity { get; set; }
+        public DbSet<SizeMaster> sizeMasterEntity { get; set; }
     }
 }
