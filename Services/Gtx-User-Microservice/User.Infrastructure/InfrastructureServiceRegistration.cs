@@ -31,6 +31,7 @@ namespace user.infrastructure
             services.AddScoped<IProductMasterRepository, ProductMasterRepositories>();
             services.AddScoped<IStockCategoryRepository, StockCategoryRepositories>();
             services.AddScoped<IStockInvoiceRepository, StockInvoiceRepositories>();
+            services.AddScoped<IStockMasterRepository, StockMasterRepositories>();
             return services;
         }
     }
