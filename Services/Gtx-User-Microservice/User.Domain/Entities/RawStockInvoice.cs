@@ -17,9 +17,9 @@ namespace User.Domain.Entities
         public required bool Deleted { get; set; } = false;
         public decimal? CreatedBy { get; set; }
         public decimal? UpdatedBy { get; set; }
-        [ForeignKey("StockCategory")]
-        public int StockCategoryId { get; set; }
-        public StockCategory? StockCategory { get; set; }
+        [ForeignKey("stockMaster")]
+        public decimal StockId { get; set; }
+        public StockMaster? stockMaster{ get; set; }
         [ForeignKey("clientMaster")]
         public decimal ClientId { get; set; }
         public ClientMaster? clientMaster { get; set; }

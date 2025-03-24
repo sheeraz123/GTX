@@ -18,7 +18,6 @@ namespace User.Domain.Entities
         public decimal? UpdatedBy { get; set; }
 
         public required int CalculatePerPair { get; set; }
-        public ICollection<RawStockInvoice>?  rawStockInvoices{ get; set; }
         public ICollection<StockMaster>? stockMaster{ get; set; }
     }
 }

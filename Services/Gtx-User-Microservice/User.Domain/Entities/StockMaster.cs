@@ -30,6 +30,7 @@ namespace User.Domain.Entities
         public int StockCategoryId { get; set; }
         public StockCategory? StockCategory { get; set; }
         public  string? HsnCode { get; set; }
+        public ICollection<RawStockInvoice>? rawStockInvoices { get; set; }
 
     }
 }

@@ -17,11 +17,10 @@ namespace User.Infrastructure
         public DbSet<CompanyMaster> companyMasterEntity { get; set; }
         public DbSet<ClientMaster> clientMasterEntity { get; set; }
         public DbSet<ProductCategory> productCategoryEntity { get; set; }
-        // ...existing code...
+    
         public DbSet<ProductMaster> productMasterEntity { get; set; }
         public DbSet<StockCategory> StockCategoriesEntity { get; set; }
-        // ...existing code...
-        public DbSet<StockInvoice> stockInvoicesEntity { get; set; }
+    
         public DbSet<StockMaster> stockMastersEntity { get; set; }
         public DbSet<ColorMaster> colorMasterEntity { get; set; }
         public DbSet<SizeMaster> sizeMasterEntity { get; set; }
