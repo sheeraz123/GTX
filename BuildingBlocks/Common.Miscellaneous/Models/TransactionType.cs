@@ -4,5 +4,6 @@
     {
         public static string Earn = "Earn";
         public static string Redeem = "Redeem";
+        public static string Reverse = "Reverse";
     }
 }

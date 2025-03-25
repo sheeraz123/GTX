@@ -38,6 +38,7 @@ namespace user.infrastructure
             services.AddScoped<IRawStockTransactionRepository, RawStockTransactionRepository>();
 
             services.AddScoped<IAvailableRawStockRepository, AvailableRawStockRepository>();
+            services.AddScoped<IBillingRawMaterialRepository, BillingRawMaterialRepository>();
 
             return services;
         }

@@ -9,9 +9,9 @@ namespace User.Domain.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public decimal Id { get; set; }
-        public required string BillNumber { get; set; }
-        public required string BillImage { get; set; }
-        public required string TransactionType { get; set; }
+  
+
+        public  decimal? ReverseBillingId { get; set; }
         public DateTime CreationDate { get; set; } = DateTime.Now;
         public DateTime? UpdationDate { get; set; }
         public required bool Enabled { get; set; } = true;
@@ -21,8 +21,9 @@ namespace User.Domain.Entities
         [ForeignKey("stockMaster")]
         public decimal StockId { get; set; }
         public StockMaster? stockMaster{ get; set; }
-        [ForeignKey("clientMaster")]
-        public decimal ClientId { get; set; }
-        public ClientMaster? clientMaster { get; set; }
+        [ForeignKey("BillingRawMaterial")]
+        public required decimal BillingId { get; set; }
+        public BillingRawMaterial? BillingRawMaterial{ get; set; }
+
     }
 }

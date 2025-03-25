@@ -8,28 +8,24 @@ using System.Threading.Tasks;
 
 namespace User.Domain.Entities
 {
-    [Table("tbl_Available_RawStock")]
-    public class AvialableRawMaterial
+    [Table("tbl_Stock_RawMaterial_Billing")]
+    public class BillingRawMaterial
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public decimal Id { get; set; }
-        public decimal StockId { get; set; }
-        public required long Quantity { get; set; }
-        public  long? ReverseQuantity { get; set; }
-        public long? RedeemQuantity { get; set; }
+        public required string BillNumber { get; set; }
+        public required string BillImage { get; set; }
+        public required string TransactionType { get; set; }
         public DateTime CreationDate { get; set; } = DateTime.Now;
         public DateTime? UpdationDate { get; set; }
         public required bool Enabled { get; set; } = true;
         public required bool Deleted { get; set; } = false;
         public decimal? CreatedBy { get; set; }
-        public decimal? UpdatedBy { get; set; }      
-        [ForeignKey("SizeMaster")]
-        public required int SizeId { get; set; }
-        public SizeMaster? SizeMaster { get; set; }
-        [ForeignKey("colorMaster")]
-        public required int ColorId { get; set; }
-        public ColorMaster? colorMaster { get; set; }
-
+        public decimal? UpdatedBy { get; set; }       
+        [ForeignKey("clientMaster")]
+        public decimal ClientId { get; set; }
+        public ClientMaster? clientMaster { get; set; }
+        public ICollection<RawStockInvoice>? rawStockInvoices{ get; set; }
     }
 }

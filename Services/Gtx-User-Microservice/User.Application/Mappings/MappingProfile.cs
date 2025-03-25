@@ -80,11 +80,11 @@ namespace User.Application.Mappings
             CreateMap<ColorMaster, Features.Misc.ColorMasters.Query.GetData.GetVm>().ReverseMap();
             CreateMap<ColorMaster, Features.Misc.ColorMasters.Command.Update.UpdateVm>().ReverseMap();
 
-            CreateMap<RawStockInvoice, Features.Stocks.AvailableRawStock.Command.Add.AddCommand>().ReverseMap();
-            CreateMap<RawStockInvoice, Features.Stocks.AvailableRawStock.Command.Add.AddVm>().ReverseMap();
-            CreateMap<RawStockInvoice, Features.Stocks.AvailableRawStock.Command.Update.UpdateCommand>().ReverseMap();
-            CreateMap<RawStockInvoice, Features.Stocks.AvailableRawStock.Query.GetData.GetVm>().ReverseMap();
-            CreateMap<RawStockInvoice, Features.Stocks.AvailableRawStock.Command.Update.UpdateVm>().ReverseMap();
+            CreateMap<BillingRawMaterial, Features.Stocks.AvailableRawStock.Command.Add.AddCommand>().ReverseMap();
+            CreateMap<BillingRawMaterial, Features.Stocks.AvailableRawStock.Command.Add.AddVm>().ReverseMap();
+            CreateMap<BillingRawMaterial, Features.Stocks.AvailableRawStock.Command.Update.UpdateCommand>().ReverseMap();
+            CreateMap<BillingRawMaterial, Features.Stocks.AvailableRawStock.Query.GetData.GetVm>().ReverseMap();
+            CreateMap<BillingRawMaterial, Features.Stocks.AvailableRawStock.Command.Update.UpdateVm>().ReverseMap();
 
         }
     }

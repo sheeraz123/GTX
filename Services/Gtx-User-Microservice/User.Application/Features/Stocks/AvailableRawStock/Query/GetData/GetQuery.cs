@@ -7,6 +7,6 @@ namespace User.Application.Features.Stocks.AvailableRawStock.Query.GetData
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
         public string? Search { get; set; }
-        public int Id { get; set; }
+        public decimal Id { get; set; }
     }
 }

@@ -41,7 +41,7 @@ namespace User.Domain.Entities
         public int CityId { get; set; }
         public CityMaster? cityMaster { get; set; }
 
-        public ICollection<RawStockInvoice>? rawStockInvoices { get; set; }
+        public ICollection<BillingRawMaterial>? billingRawMaterials{ get; set; }
 
     }
 }

@@ -8,8 +8,6 @@ namespace User.Application.Features.Stocks.AvailableRawStock.Command.Add
 {
     public class UpdateTranaction
     {
-        public int CartId { get; set; }
-        public decimal? Id { get; set; }
         public int SizeId { get; set; }
         public int ColorId { get; set; }
         public decimal MRP { get; set; }

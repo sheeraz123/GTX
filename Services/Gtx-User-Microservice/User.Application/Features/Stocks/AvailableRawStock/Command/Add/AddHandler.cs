@@ -17,10 +17,11 @@ namespace User.Application.Features.Stocks.AvailableRawStock.Command.Add
         private readonly IRawStockInvoiceRepository rawStockInvoiceRepository;
         private readonly IRawStockTransactionRepository rawStockTransactionRepository;
         private readonly IStockMasterRepository stockMasterRepository;
+        private readonly IBillingRawMaterialRepository billingRawMaterialRepository;
         private readonly IMapper _mapper;
         private readonly ImageServer _imageServer;
 
-        public AddHandler(IAvailableRawStockRepository repository, IMapper mapper, IOptions<ImageServer> imageServer, IRawStockTransactionRepository rawStockTransactionRepository, IRawStockInvoiceRepository rawStockInvoiceRepository, IStockMasterRepository stockMasterRepository)
+        public AddHandler(IAvailableRawStockRepository repository, IMapper mapper, IOptions<ImageServer> imageServer, IRawStockTransactionRepository rawStockTransactionRepository, IRawStockInvoiceRepository rawStockInvoiceRepository, IStockMasterRepository stockMasterRepository, IBillingRawMaterialRepository billingRawMaterialRepository)
         {
             _repository = repository;
             _mapper = mapper;
@@ -28,14 +29,15 @@ namespace User.Application.Features.Stocks.AvailableRawStock.Command.Add
             this.rawStockTransactionRepository = rawStockTransactionRepository;
             this.rawStockInvoiceRepository = rawStockInvoiceRepository;
             this.stockMasterRepository = stockMasterRepository;
+            this.billingRawMaterialRepository = billingRawMaterialRepository;
         }
 
         public async Task<AddVm> Handle(AddCommand request, CancellationToken cancellationToken)
         {
             using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
-                var entity = _mapper.Map<RawStockInvoice>(request);
-                var isExits = await rawStockInvoiceRepository.GetAsync(s => s.BillNumber.ToLower() == entity.BillNumber.ToLower());
+                var entity = _mapper.Map<BillingRawMaterial>(request);
+                var isExits = await billingRawMaterialRepository.GetAsync(s => s.BillNumber.ToLower() == entity.BillNumber.ToLower());
 
                 if (isExits != null && isExits.Count > 0)
                 {
@@ -45,11 +47,11 @@ namespace User.Application.Features.Stocks.AvailableRawStock.Command.Add
                         ResponseMessage = "Record Already exists"
                     };
                 }
+                var billingEntity =await CreateBilling(request);
+                var entities = await CreateInvoice(request, billingEntity);
 
-                var entities = await CreateInvoice(request);
 
-                var results = await rawStockInvoiceRepository.AddRangeAsync(entities);
-                foreach (var res in results)
+                foreach (var res in entities)
                 {
                     var (transactionEntities, insertStock, UpdateStock) = await CreateAailableEntities(request, res);
                     if (transactionEntities.Any())
@@ -69,19 +71,41 @@ namespace User.Application.Features.Stocks.AvailableRawStock.Command.Add
                 };
             }
         }
-        private async Task<IEnumerable<RawStockInvoice>> CreateInvoice(AddCommand request)
+        private async Task<BillingRawMaterial> CreateBilling(AddCommand request)
+        {
+
+
+            var res = new BillingRawMaterial
+            {
+
+                BillImage = request.BillImage,
+                BillNumber = request.BillNumber,
+                Deleted = request.Deleted,
+                Enabled = request.Enabled,
+                TransactionType = request.TransactionType,
+                ClientId = request.ClientId,
+                CreatedBy = request.CreatedBy,
+                CreationDate = DateTime.Now,
+
+            };
+            var result = await billingRawMaterialRepository.AddAsync(res);
+            return result;
+
+
+
+
+        }
+        private async Task<IEnumerable<RawStockInvoice>> CreateInvoice(AddCommand request, BillingRawMaterial billingRawMaterial)
         {
             var insertRawStockInvoiceEntity = new List<RawStockInvoice>();
             foreach (var stock in request.stocks)
             {
                 insertRawStockInvoiceEntity.Add(new RawStockInvoice
                 {
-                    BillImage = request.BillImage,
-                    BillNumber = request.BillNumber,
+
+                    BillingId = billingRawMaterial.Id,
                     Deleted = request.Deleted,
                     Enabled = request.Enabled,
-                    TransactionType = request.TransactionType,
-                    ClientId = request.ClientId,
                     CreatedBy = request.CreatedBy,
                     CreationDate = DateTime.Now,
                     StockId = stock.StockId
@@ -89,10 +113,9 @@ namespace User.Application.Features.Stocks.AvailableRawStock.Command.Add
 
 
             }
-            return insertRawStockInvoiceEntity;
+            var results = await rawStockInvoiceRepository.AddRangeAsync(insertRawStockInvoiceEntity);
+            return results;
         }
-
-
         private async Task<(IEnumerable<RawStockTransaction> rowwStockTransaction, IEnumerable<AvialableRawMaterial> insert, IEnumerable<AvialableRawMaterial> update)> CreateAailableEntities(AddCommand request, RawStockInvoice result)
         {
             // Create and return a list of RawStockTransaction entities based on the request and result
@@ -153,7 +176,7 @@ namespace User.Application.Features.Stocks.AvailableRawStock.Command.Add
                         res.Enabled = result.Enabled;
                         res.Deleted = result.Deleted;
                         res.StockId = result.StockId;
-                        res.Quantity = result.TransactionType == TransactionType.Earn ? (res.Quantity + (transaction.Quantity * formula)) : (res.Quantity - (transaction.Quantity * formula));
+                        res.Quantity = (res.Quantity + (transaction.Quantity * formula));
                         res.SizeId = transaction.SizeId;
                         res.CreationDate = result.CreationDate;
                         res.UpdatedBy = result.UpdatedBy;

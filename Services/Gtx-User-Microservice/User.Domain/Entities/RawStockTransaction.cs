@@ -24,6 +24,8 @@ namespace User.Domain.Entities
         [ForeignKey("stockInvoice")]
         public required decimal InvoiceId { get; set; }
         public RawStockInvoice? stockInvoice{ get; set; }
+      
+        public  decimal ReverseInvoiceId { get; set; }
         [ForeignKey("SizeMaster")]
         public required int SizeId { get; set; }
         public SizeMaster? SizeMaster { get; set; }
