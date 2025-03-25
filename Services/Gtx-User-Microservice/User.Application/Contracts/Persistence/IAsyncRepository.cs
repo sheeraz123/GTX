@@ -17,7 +17,10 @@ namespace User.Application.Contracts.Persistence
         Task<T> GetByIdAsync(int id);
         Task<T> GetByIdAsync(decimal id);
         Task<T> AddAsync(T entity);
+        Task<IReadOnlyList<T>> AddRangeAsync(IEnumerable<T> entity);
         Task<T> UpdateAsync(T entity);
+        Task<IReadOnlyList<T>> UpdateRangeAsync(IEnumerable<T> entity);
+
         Task DeleteAsync(T entity);
 
         //Task<T> IsExits(Expression<Func<T, bool>>? predicate);

@@ -27,7 +27,7 @@ namespace User.Api.Controllers
         [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(typeof(ErrorDetails), StatusCodes.Status502BadGateway)]
-        public async Task<IActionResult> Add([FromForm] AddCommand command)
+        public async Task<IActionResult> Add([FromBody] AddCommand command)
         {
             var response = await _mediator.Send(command);
             return Ok(response);

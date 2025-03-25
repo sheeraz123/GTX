@@ -18,9 +18,7 @@ namespace User.Infrastructure.Repositories
             if (request.Id > 0)
             {
                 var result = await _dbContext.stockMastersEntity.Where(u => u.Id == request.Id)
-                    .Include(i=>i.StockCategory)
-                   .Skip((request.PageNumber - 1) * request.PageSize)
-                   .Take(request.PageSize)
+                    .Include(i=>i.StockCategory)                 
                    .Select(u => new GetDetailsVm
                    {
                        Id = u.Id,

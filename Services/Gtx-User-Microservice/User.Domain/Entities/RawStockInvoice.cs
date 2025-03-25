@@ -11,6 +11,7 @@ namespace User.Domain.Entities
         public decimal Id { get; set; }
         public required string BillNumber { get; set; }
         public required string BillImage { get; set; }
+        public required string TransactionType { get; set; }
         public DateTime CreationDate { get; set; } = DateTime.Now;
         public DateTime? UpdationDate { get; set; }
         public required bool Enabled { get; set; } = true;

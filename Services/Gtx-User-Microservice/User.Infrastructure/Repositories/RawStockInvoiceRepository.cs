@@ -7,9 +7,9 @@ using User.Application.Features.Stocks.AvailableRawStock.Command.Add;
 
 namespace User.Infrastructure.Repositories
 {
-    public class AvailableRawStockRepository : RepositoryBase<AvialableRawMaterial>, IAvailableRawStockRepository
+    public class RawStockInvoiceRepository : RepositoryBase<RawStockInvoice>, IRawStockInvoiceRepository
     {
-        public AvailableRawStockRepository(SqlContext dbContext) : base(dbContext)
+        public RawStockInvoiceRepository(SqlContext dbContext) : base(dbContext)
         {
         }
 

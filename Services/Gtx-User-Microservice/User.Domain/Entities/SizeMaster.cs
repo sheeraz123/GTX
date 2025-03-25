@@ -19,6 +19,6 @@ namespace User.Domain.Entities
         public decimal? CreatedBy { get; set; }
         public decimal? UpdatedBy { get; set; }
         public ICollection<RawStockTransaction>? RawStockTransaction { get; set; }
-        public ICollection<AvialableRawStock>? avialableRawStocks { get; set; }
+        public ICollection<AvialableRawMaterial>? avialableRawStocks { get; set; }
     }
 }

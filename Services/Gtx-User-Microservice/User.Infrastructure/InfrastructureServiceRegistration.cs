@@ -32,9 +32,13 @@ namespace user.infrastructure
             services.AddScoped<IStockCategoryRepository, StockCategoryRepositories>();
             services.AddScoped<IStockMasterRepository, StockMasterRepositories>();
             services.AddScoped<ISizeMasterRepository, SizeMasterRepositories>();
+           
+            services.AddScoped<IColorMasterRepository, ColorMasterRepositories>();
+            services.AddScoped<IRawStockInvoiceRepository, RawStockInvoiceRepository>();
+            services.AddScoped<IRawStockTransactionRepository, RawStockTransactionRepository>();
+
             services.AddScoped<IAvailableRawStockRepository, AvailableRawStockRepository>();
 
-            services.AddScoped<IColorMasterRepository, ColorMasterRepositories>();
             return services;
         }
     }

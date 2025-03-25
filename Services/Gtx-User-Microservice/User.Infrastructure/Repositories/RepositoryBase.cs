@@ -93,5 +93,20 @@ namespace user.infrastructure
         {
             return await _dbContext.Set<T>().FindAsync(id);
         }
+
+        public async Task<IReadOnlyList<T>> AddRangeAsync(IEnumerable<T> entity)
+        {
+            await _dbContext.Set<T>().AddRangeAsync(entity);
+            await _dbContext.SaveChangesAsync();
+            return entity.ToList();
+        }
+
+
+        public async Task<IReadOnlyList<T>> UpdateRangeAsync(IEnumerable<T> entity)
+        {
+            _dbContext.Set<T>().UpdateRange(entity);
+            await _dbContext.SaveChangesAsync();
+            return entity.ToList();
+        }
     }
 }

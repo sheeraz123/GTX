@@ -15,16 +15,9 @@ namespace User.Application.Features.Stocks.AvailableRawStock.Query.GetData
             _mapper = mapper;
         }
 
-        public async Task<GetVm> Handle(GetQuery request, CancellationToken cancellationToken)
+        public Task<GetVm> Handle(GetQuery request, CancellationToken cancellationToken)
         {
-            var (totalCount, result) = await _repository.GetDetails(request);
-            return new GetVm()
-            {
-                TotalRecords = totalCount,
-                Details = result
-
-            };
-
+            throw new NotImplementedException();
         }
     }
 }

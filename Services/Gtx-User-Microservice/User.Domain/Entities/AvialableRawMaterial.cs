@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 namespace User.Domain.Entities
 {
     [Table("tbl_Available_RawStock")]
-    public class AvialableRawStock
+    public class AvialableRawMaterial
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public decimal Id { get; set; }
-       
-        public required int Quantity { get; set; }
+        public decimal StockId { get; set; }
+        public required long Quantity { get; set; }
      
         public DateTime CreationDate { get; set; } = DateTime.Now;
         public DateTime? UpdationDate { get; set; }

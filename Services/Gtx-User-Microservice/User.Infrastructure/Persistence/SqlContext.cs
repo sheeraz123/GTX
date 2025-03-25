@@ -24,5 +24,7 @@ namespace User.Infrastructure
         public DbSet<StockMaster> stockMastersEntity { get; set; }
         public DbSet<ColorMaster> colorMasterEntity { get; set; }
         public DbSet<SizeMaster> sizeMasterEntity { get; set; }
+        public DbSet<RawStockInvoice> rawStockInvoicesEntity { get; set; }
+        public DbSet<RawStockTransaction> rawStockTransactionsEntity { get; set; }
     }
 }
