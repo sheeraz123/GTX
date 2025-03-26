@@ -17,6 +17,7 @@ namespace User.Domain.Entities
         public required string BillNumber { get; set; }
         public required string BillImage { get; set; }
         public required string TransactionType { get; set; }
+        public decimal? ReverseBillingId { get; set; }
         public DateTime CreationDate { get; set; } = DateTime.Now;
         public DateTime? UpdationDate { get; set; }
         public required bool Enabled { get; set; } = true;
@@ -26,6 +27,7 @@ namespace User.Domain.Entities
         [ForeignKey("clientMaster")]
         public decimal ClientId { get; set; }
         public ClientMaster? clientMaster { get; set; }
-        public ICollection<RawStockInvoice>? rawStockInvoices{ get; set; }
+        public ICollection<RawStockInvoice> RawStockInvoices{ get; set; }
+       
     }
 }

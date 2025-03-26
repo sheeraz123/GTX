@@ -21,10 +21,12 @@ namespace User.Domain.Entities
         public required bool Deleted { get; set; } = false;
         public decimal? CreatedBy { get; set; }
         public decimal? UpdatedBy { get; set; }
-        [ForeignKey("stockInvoice")]
+     
         public required decimal InvoiceId { get; set; }
-        public RawStockInvoice? stockInvoice{ get; set; }
-      
+        [ForeignKey("InvoiceId")]
+       
+        public RawStockInvoice? rawStockInvoice { get; set; }
+
         public  decimal ReverseInvoiceId { get; set; }
         [ForeignKey("SizeMaster")]
         public required int SizeId { get; set; }

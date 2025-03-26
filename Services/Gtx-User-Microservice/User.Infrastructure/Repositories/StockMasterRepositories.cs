@@ -45,9 +45,10 @@ namespace User.Infrastructure.Repositories
             else if (!string.IsNullOrWhiteSpace(request.Search))
             {
                 var result = await _dbContext.stockMastersEntity.Where(u => u.StockName.StartsWith(request.Search))
-                    .Include(i => i.StockCategory)
-                 .Skip((request.PageNumber - 1) * request.PageSize)
-                 .Take(request.PageSize)
+                .Skip((request.PageNumber - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .Include(i => i.StockCategory)
+             
                  .Select(u => new GetDetailsVm
                  {
                      Id = u.Id,
@@ -72,9 +73,9 @@ namespace User.Infrastructure.Repositories
             else
             {
                 var result = await _dbContext.stockMastersEntity
+                    .Skip((request.PageNumber - 1) * request.PageSize).Take(request.PageSize)
                     .Include(i => i.StockCategory)
-                   .Skip((request.PageNumber - 1) * request.PageSize)
-                   .Take(request.PageSize)
+                 
                   .Select(u => new GetDetailsVm
                   {
                       Id = u.Id,

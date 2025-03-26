@@ -21,8 +21,7 @@ namespace User.Infrastructure.Repositories
                     .Include(u => u.countryMaster)
                     .Include(u => u.cityMaster)
                     .Include(u => u.stateMaster)
-                    .Skip((request.PageNumber - 1) * request.PageSize)
-                   .Take(request.PageSize)
+                  
                    .Select(u => new GetCompanyDetailsVm
                    {
                        Id = u.Id,
@@ -61,11 +60,12 @@ namespace User.Infrastructure.Repositories
             else if (!string.IsNullOrWhiteSpace(request.Search))
             {
                 var result = await _dbContext.companyMasterEntity.Where(u => u.CompanyName.StartsWith(request.Search))
-                    .Include(u => u.countryMaster)
-                    .Include(u => u.cityMaster)
-                    .Include(u => u.stateMaster)
-                    .Skip((request.PageNumber - 1) * request.PageSize)
-                   .Take(request.PageSize)
+                .Skip((request.PageNumber - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .Include(u => u.countryMaster)
+                .Include(u => u.cityMaster)
+                .Include(u => u.stateMaster)
+                   
                    .Select(u => new GetCompanyDetailsVm
                    {
                        Id = u.Id,
@@ -104,11 +104,12 @@ namespace User.Infrastructure.Repositories
             else
             {
                 var result = await _dbContext.companyMasterEntity
+                     .Skip((request.PageNumber - 1) * request.PageSize)
+                    .Take(request.PageSize)
                     .Include(u => u.countryMaster)
                     .Include(u => u.cityMaster)
                     .Include(u => u.stateMaster)
-                    .Skip((request.PageNumber - 1) * request.PageSize)
-                    .Take(request.PageSize)
+                   
                     .Select(u => new GetCompanyDetailsVm
                     {
                         Id = u.Id,

@@ -16,7 +16,7 @@ namespace User.Domain.Entities
         public decimal Id { get; set; }
         public decimal StockId { get; set; }
         public required long Quantity { get; set; }
-        public  long? ReverseQuantity { get; set; }
+        public long? ReverseQuantity { get; set; } = 0;
         public long? RedeemQuantity { get; set; }
         public DateTime CreationDate { get; set; } = DateTime.Now;
         public DateTime? UpdationDate { get; set; }

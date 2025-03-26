@@ -17,16 +17,16 @@ namespace User.Infrastructure.Repositories
             if (request.Id > 0)
             {
                 var result = await _dbContext.clientMasterEntity.Where(u => u.Id == request.Id)
-                   .Include(u => u.companyMaster)
-                   .Include(u => u.stateMaster)
-                   .Include(u => u.cityMaster)
-                   .Include(u => u.countryMaster)
-                   .Skip((request.PageNumber - 1) * request.PageSize)
-                   .Take(request.PageSize)
+
+                    .Include(u => u.companyMaster)
+                    .Include(u => u.stateMaster)
+                    .Include(u => u.cityMaster)
+                    .Include(u => u.countryMaster)
+
                    .Select(u => new GetClientDetailsVm
                    {
                        Id = u.Id,
-                       ClientName=u.ClientName,
+                       ClientName = u.ClientName,
                        CompanyId = u.CompanyId,
                        Description = u.Description,
                        Address = u.Address,
@@ -40,15 +40,15 @@ namespace User.Infrastructure.Repositories
                        AadharNumber = u.AadharNumber,
                        PANCard = u.PANCard,
                        companyMaster = u.companyMaster,
-                       stateMaster=u.stateMaster,
+                       stateMaster = u.stateMaster,
                        cityMaster = u.cityMaster,
-                       countryMaster= u.countryMaster,
+                       countryMaster = u.countryMaster,
                        UpdationDate = u.UpdationDate,
                        Enabled = u.Enabled,
                        Deleted = u.Deleted,
                        CreatedBy = u.CreatedBy,
                        UpdatedBy = u.UpdatedBy,
-                       Vendor=u.Vendor
+                       Vendor = u.Vendor
                    })
                    .AsNoTracking()
                    .ToListAsync();
@@ -57,15 +57,16 @@ namespace User.Infrastructure.Repositories
                 ;
 
             }
-            else if(!string.IsNullOrWhiteSpace( request.Search))
+            else if (!string.IsNullOrWhiteSpace(request.Search))
             {
                 var result = await _dbContext.clientMasterEntity.Where(u => u.ClientName.StartsWith(request.Search))
-                 .Include(u => u.companyMaster)
-                 .Include(u => u.stateMaster)
-                 .Include(u => u.cityMaster)
-                 .Include(u => u.countryMaster)
-                 .Skip((request.PageNumber - 1) * request.PageSize)
-                 .Take(request.PageSize)
+                .Skip((request.PageNumber - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .Include(u => u.companyMaster)
+                .Include(u => u.stateMaster)
+                .Include(u => u.cityMaster)
+                .Include(u => u.countryMaster)
+
                  .Select(u => new GetClientDetailsVm
                  {
                      Id = u.Id,
@@ -101,12 +102,13 @@ namespace User.Infrastructure.Repositories
             else
             {
                 var result = await _dbContext.clientMasterEntity
-                   .Include(u => u.companyMaster)
-                     .Include(u => u.stateMaster)
-                   .Include(u => u.countryMaster)
-                   .Include(u => u.countryMaster)
-                   .Skip((request.PageNumber - 1) * request.PageSize)
-                   .Take(request.PageSize)
+                .Skip((request.PageNumber - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .Include(u => u.companyMaster)
+                .Include(u => u.stateMaster)
+                .Include(u => u.countryMaster)
+                .Include(u => u.countryMaster)
+                  
                   .Select(u => new GetClientDetailsVm
                   {
                       Id = u.Id,
@@ -145,6 +147,6 @@ namespace User.Infrastructure.Repositories
 
         }
 
-       
+
     }
 }

@@ -24,8 +24,7 @@ namespace User.Infrastructure.Repositories
             if (request.Id > 0)
             {
                 var result = await _dbContext.productCategoryEntity.Where(u => u.Id == request.Id)
-                   .Skip((request.PageNumber - 1) * request.PageSize)
-                   .Take(request.PageSize)
+                 
                    .Select(u => new GetProductCategoryDetailsVm
                    {
                        Id = u.Id,

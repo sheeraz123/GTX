@@ -1,4 +1,5 @@
 ﻿using Common.Miscellaneous.Models;
+using User.Domain.Entities;
 
 namespace User.Application.Features.Stocks.AvailableRawStock.Query.GetData
 {
@@ -10,19 +11,20 @@ namespace User.Application.Features.Stocks.AvailableRawStock.Query.GetData
     public class GetDetailsVm 
     {
         public decimal Id { get; set; }
-        public int StockCategoryId { get; set; }
-        public required string StockName { get; set; }
-        public required string StockDescription { get; set; }
-        public string? StockCode { get; set; }
-        public string? StockImage { get; set; }
+        public  string? BillNumber { get; set; }
+        public  string? BillImage { get; set; }
+        public  string? TransactionType { get; set; }
+        public decimal? ReverseBillingId { get; set; }
         public DateTime CreationDate { get; set; } = DateTime.Now;
         public DateTime? UpdationDate { get; set; }
-        public required bool Enabled { get; set; } = true;
-        public required bool Deleted { get; set; } = false;
+        public  bool Enabled { get; set; } = true;
+        public bool Deleted { get; set; } = false;
         public decimal? CreatedBy { get; set; }
         public decimal? UpdatedBy { get; set; }
-        public Domain.Entities.StockCategory? stockCategory{ get; set; }
-        public string? HsnCode { get; set; }
+       
+        public decimal ClientId { get; set; }
+        public ClientMaster? clientMaster { get; set; }
+        public ICollection<RawStockInvoice>? rawStockInvoices { get; set; }
 
     }
 }

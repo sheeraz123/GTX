@@ -31,8 +31,7 @@ namespace User.Infrastructure.Repositories
             {
                 var result = await _dbContext.userMasterEntity.Where(u => u.Id == request.UserId)
                    .Include(u => u.userTypes)
-                   .Skip((request.PageNumber - 1) * request.PageSize)
-                   .Take(request.PageSize)
+                  
                    .Select(u => new GetUserDetailsVm
                    {
                        Id = u.Id,
@@ -58,9 +57,10 @@ namespace User.Infrastructure.Repositories
             else
             {
                 var result = await _dbContext.userMasterEntity
-                   .Include(u => u.userTypes)
-                   .Skip((request.PageNumber - 1) * request.PageSize)
+                      .Skip((request.PageNumber - 1) * request.PageSize)
                    .Take(request.PageSize)
+                   .Include(u => u.userTypes)
+                 
                    .Select(u => new GetUserDetailsVm
                    {
                        Id = u.Id,

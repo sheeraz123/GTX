@@ -21,8 +21,7 @@ namespace User.Infrastructure.Repositories
             {
                 var result = await _dbContext.productMasterEntity.Where(u => u.Id == request.Id)
                   .Include(u => u.productCategory)
-                    .Skip((request.PageNumber - 1) * request.PageSize)
-                   .Take(request.PageSize)
+                 
                    .Select(u => new GetProductMasterDetailsVm
                    {
                        Id = u.Id,
@@ -47,9 +46,10 @@ namespace User.Infrastructure.Repositories
             else if (!string.IsNullOrWhiteSpace(request.Search))
             {
                 var result = await _dbContext.productMasterEntity.Where(u => u.ProductName.StartsWith(request.Search))
-                      .Include(u => u.productCategory)
-                 .Skip((request.PageNumber - 1) * request.PageSize)
-                 .Take(request.PageSize)
+                .Skip((request.PageNumber - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .Include(u => u.productCategory)
+                
                  .Select(u => new GetProductMasterDetailsVm
                  {
                      Id = u.Id,
@@ -74,9 +74,9 @@ namespace User.Infrastructure.Repositories
             else
             {
                 var result = await _dbContext.productMasterEntity
+                    .Skip((request.PageNumber - 1) * request.PageSize).Take(request.PageSize)
                       .Include(u => u.productCategory)
-                   .Skip((request.PageNumber - 1) * request.PageSize)
-                   .Take(request.PageSize)
+             
                   .Select(u => new GetProductMasterDetailsVm
                   {
                       Id = u.Id,
